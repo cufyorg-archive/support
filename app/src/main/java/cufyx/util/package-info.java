@@ -15,4 +15,4 @@
  * @version 1 release (21-Feb-20)
  * @since 21-Feb-20
  */
-package cufy.util;
+package cufyx.util;

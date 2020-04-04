@@ -15,4 +15,4 @@
  * @version 1 release (22-Feb-20)
  * @since 22-Feb-20
  */
-package cufy.io;
+package cufyx.io;
