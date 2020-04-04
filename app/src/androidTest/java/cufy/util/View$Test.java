@@ -23,7 +23,7 @@ import org.junit.Test;
 import java.util.List;
 
 @SuppressWarnings("JavaDoc")
-public class ViewGroup$Test {
+public class View$Test {
 	@Test
 	public void remoteList() {
 		Context context = ApplicationProvider.getApplicationContext();
