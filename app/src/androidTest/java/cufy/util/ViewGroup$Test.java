@@ -35,7 +35,7 @@ public class ViewGroup$Test {
 
 		//----------
 
-		List<View> list = ViewGroup$.remoteList(layout);
+		List<View> list = View$.listFor(layout);
 
 		layout.addView(view1);
 
@@ -56,7 +56,6 @@ public class ViewGroup$Test {
 
 		Assert.assertEquals("Can't replace views", view2, layout.getChildAt(0));
 	}
-
 //	@Test
 //	public void remoteAdaptersList() {
 //		Context context = ApplicationProvider.getApplicationContext();

@@ -27,13 +27,13 @@ import java.util.Spliterator;
  * @version 2 release (22-Feb-2020)
  * @since 21-Feb-2020
  */
-final public class ViewGroup$ {
+final public class View$ {
 	/**
 	 * This is a util class. And shall not be instanced as an object.
 	 *
 	 * @throws AssertionError when called
 	 */
-	private ViewGroup$() {
+	private View$() {
 		throw new AssertionError("No instance for you!");
 	}
 
@@ -44,7 +44,7 @@ final public class ViewGroup$ {
 	 * @return a remote list for the children of the given group
 	 * @throws NullPointerException if the given group is null
 	 */
-	public static List<View> remoteList(ViewGroup group) {
+	public static List<View> listFor(ViewGroup group) {
 		Objects.requireNonNull(group, "group");
 
 		return new AbstractList<View>() {
@@ -136,86 +136,4 @@ final public class ViewGroup$ {
 			}
 		};
 	}
-
-//	/**
-//	 * Get a remote list to control (add, remove, etc...) for the given group. That list will apply it's operations to a internal view-adapter list
-//	 * and the given view group imaginary children list.
-//	 *
-//	 * @param group to get a remote for
-//	 * @param <T>   the type of the adapters
-//	 * @return a remote list to control the given group
-//	 * @throws NullPointerException if the given group is null
-//	 */
-//	public static <T extends ViewAdapter> List<T> remoteAdaptersList(ViewGroup group) {
-//		Objects.requireNonNull(group, "group");
-//
-//		List<View> views = remoteList(group);
-//		List<T> adapters = new ArrayList<>();
-//
-//		return new AbstractList<T>() {
-//			@Override
-//			public int size() {
-//				return adapters.size();
-//			}
-//
-//			@Override
-//			public T set(int index, T element) {
-//				views.set(index, element.getView());
-//				return adapters.set(index, element);
-//			}
-//
-//			@Override
-//			public void add(int index, T element) {
-//				views.add(index, element.getView());
-//				adapters.add(index, element);
-//			}
-//
-//			@Override
-//			public T remove(int index) {
-//				views.remove(index);
-//				return adapters.remove(index);
-//			}
-//
-//			@Override
-//			public int indexOf(Object o) {
-//				return adapters.indexOf(o);
-//			}
-//
-//			@Override
-//			public List<T> subList(int fromIndex, int toIndex) {
-//				throw new UnsupportedOperationException();
-//			}
-//
-//			@Override
-//			public Spliterator<T> spliterator() {
-//				throw new UnsupportedOperationException();
-//			}
-//
-//			@Override
-//			public boolean equals(@Nullable Object o) {
-//				return this == o;
-//			}
-//
-//			@Override
-//			public int hashCode() {
-//				return System.identityHashCode(this);
-//			}
-//
-//			@Override
-//			public T get(int index) {
-//				return adapters.get(index);
-//			}
-//
-//			@Override
-//			public boolean remove(Object o) {
-//				views.remove(((ViewAdapter) o).getView());
-//				return adapters.remove(o);
-//			}
-//
-//			@Override
-//			public boolean contains(Object o) {
-//				return adapters.contains(o);
-//			}
-//		};
-//	}
 }
