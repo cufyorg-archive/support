@@ -1,30 +1,32 @@
 /*
- * Copyright (c) 2020, LSafer, All rights reserved.
- * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+ *	Copyright 2020 Cufy
  *
- * -You can edit this file (except the header).
- * -If you have change anything in this file. You
- *  shall mention that this file has been edited.
- *  By adding a new header (at the bottom of this header)
- *  with the word "Editor" on top of it.
+ *	Licensed under the Apache License, Version 2.0 (the "License");
+ *	you may not use this file except in compliance with the License.
+ *	You may obtain a copy of the License at
+ *
+ *	    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *	Unless required by applicable law or agreed to in writing, software
+ *	distributed under the License is distributed on an "AS IS" BASIS,
+ *	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *	See the License for the specific language governing permissions and
+ *	limitations under the License.
  */
 package cufyx.util;
 
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.Nullable;
-
 import java.util.AbstractList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Spliterator;
 
 /**
  * Static utils for {@link ViewGroup}.
  *
- * @author LSaferSE
- * @version 2 release (22-Feb-2020)
+ * @author lsafer
+ * @version 0.1.3
  * @since 21-Feb-2020
  */
 final public class Viewz {
