@@ -27,13 +27,13 @@ import java.util.Spliterator;
  * @version 2 release (22-Feb-2020)
  * @since 21-Feb-2020
  */
-final public class View$ {
+final public class Viewz {
 	/**
 	 * This is a util class. And shall not be instanced as an object.
 	 *
 	 * @throws AssertionError when called
 	 */
-	private View$() {
+	private Viewz() {
 		throw new AssertionError("No instance for you!");
 	}
 
@@ -44,9 +44,8 @@ final public class View$ {
 	 * @return a remote list for the children of the given group
 	 * @throws NullPointerException if the given group is null
 	 */
-	public static List<View> listFor(ViewGroup group) {
+	public static List<View> asList(ViewGroup group) {
 		Objects.requireNonNull(group, "group");
-
 		return new AbstractList<View>() {
 			@Override
 			public int size() {
@@ -81,26 +80,6 @@ final public class View$ {
 			}
 
 			@Override
-			public String toString() {
-				return this.getClass() + "@" + this.hashCode();
-			}
-
-			@Override
-			public List<View> subList(int fromIndex, int toIndex) {
-				throw new UnsupportedOperationException();
-			}
-
-			@Override
-			public boolean equals(@Nullable Object o) {
-				return this == o;
-			}
-
-			@Override
-			public int hashCode() {
-				return System.identityHashCode(this);
-			}
-
-			@Override
 			public View get(int index) {
 				return group.getChildAt(index);
 			}
@@ -128,11 +107,6 @@ final public class View$ {
 			@Override
 			public int indexOf(Object o) {
 				return group.indexOfChild((View) o);
-			}
-
-			@Override
-			public Spliterator<View> spliterator() {
-				throw new UnsupportedOperationException();
 			}
 		};
 	}

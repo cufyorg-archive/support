@@ -35,7 +35,7 @@ public class View$Test {
 
 		//----------
 
-		List<View> list = View$.listFor(layout);
+		List<View> list = Viewz.asList(layout);
 
 		layout.addView(view1);
 
