@@ -49,6 +49,7 @@ public class TextViewWriter extends Writer {
 		Objects.requireNonNull(view, "view");
 		this.view = view;
 	}
+
 	/**
 	 * Construct a new writer that writes to the given {@link TextView}.
 	 *
@@ -62,17 +63,22 @@ public class TextViewWriter extends Writer {
 	}
 
 	@Override
-	public void close() {
+	public void write(int c) throws IOException {
 		synchronized (super.lock) {
-			this.closed = true;
+			if (this.closed)
+				throw new IOException("Writer closed!");
+
+			this.view.append(String.valueOf(c));
 		}
 	}
 
 	@Override
-	public void flush() throws IOException {
+	public void write(char[] cbuf) throws IOException {
 		synchronized (super.lock) {
 			if (this.closed)
 				throw new IOException("Writer closed!");
+
+			this.view.append(String.valueOf(cbuf));
 		}
 	}
 
@@ -85,15 +91,17 @@ public class TextViewWriter extends Writer {
 			this.view.append(String.valueOf(cbuf, off, len));
 		}
 	}
+
 	@Override
-	public void write(char[] cbuf) throws IOException {
+	public void write(String str) throws IOException {
 		synchronized (super.lock) {
 			if (this.closed)
 				throw new IOException("Writer closed!");
 
-			this.view.append(String.valueOf(cbuf));
+			this.view.append(str);
 		}
 	}
+
 	@Override
 	public void write(String str, int off, int len) throws IOException {
 		synchronized (super.lock) {
@@ -103,22 +111,19 @@ public class TextViewWriter extends Writer {
 			this.view.append(str, off, len);
 		}
 	}
+
 	@Override
-	public void write(int c) throws IOException {
+	public void flush() throws IOException {
 		synchronized (super.lock) {
 			if (this.closed)
 				throw new IOException("Writer closed!");
-
-			this.view.append(String.valueOf(c));
 		}
 	}
-	@Override
-	public void write(String str) throws IOException {
-		synchronized (super.lock) {
-			if (this.closed)
-				throw new IOException("Writer closed!");
 
-			this.view.append(str);
+	@Override
+	public void close() {
+		synchronized (super.lock) {
+			this.closed = true;
 		}
 	}
 }

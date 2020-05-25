@@ -50,35 +50,9 @@ final public class Viewz {
 		Objects.requireNonNull(group, "group");
 		return new AbstractList<View>() {
 			@Override
-			public int size() {
-				return group.getChildCount();
-			}
-
-			@Override
 			public boolean add(View t) {
 				group.addView(t);
 				return true;
-			}
-
-			@Override
-			public boolean contains(Object o) {
-				return this.indexOf(o) != -1;
-			}
-
-			@Override
-			public boolean remove(Object o) {
-				int i = this.indexOf(o);
-				if (i == -1) {
-					return false;
-				} else {
-					group.removeView((View) o);
-					return true;
-				}
-			}
-
-			@Override
-			public void clear() {
-				group.removeAllViews();
 			}
 
 			@Override
@@ -109,6 +83,32 @@ final public class Viewz {
 			@Override
 			public int indexOf(Object o) {
 				return group.indexOfChild((View) o);
+			}
+
+			@Override
+			public void clear() {
+				group.removeAllViews();
+			}
+
+			@Override
+			public int size() {
+				return group.getChildCount();
+			}
+
+			@Override
+			public boolean contains(Object o) {
+				return this.indexOf(o) != -1;
+			}
+
+			@Override
+			public boolean remove(Object o) {
+				int i = this.indexOf(o);
+				if (i == -1) {
+					return false;
+				} else {
+					group.removeView((View) o);
+					return true;
+				}
 			}
 		};
 	}

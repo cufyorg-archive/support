@@ -50,8 +50,11 @@ public class TextViewOutputStream extends OutputStream {
 	}
 
 	@Override
-	public void close() {
-		this.closed = true;
+	public void write(int c) throws IOException {
+		if (this.closed)
+			throw new IOException("Writer closed!");
+
+		this.view.append(String.valueOf(c));
 	}
 
 	@Override
@@ -61,10 +64,7 @@ public class TextViewOutputStream extends OutputStream {
 	}
 
 	@Override
-	public void write(int c) throws IOException {
-		if (this.closed)
-			throw new IOException("Writer closed!");
-
-		this.view.append(String.valueOf(c));
+	public void close() {
+		this.closed = true;
 	}
 }
