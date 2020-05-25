@@ -29,4 +29,4 @@ defaults:
       path: ""
     values:
       favicon: '/assets/logo/framework.ico'
-      title: 'Android Support'
+      title: 'Cufy Android Support'
