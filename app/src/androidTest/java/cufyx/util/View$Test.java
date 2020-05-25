@@ -15,7 +15,7 @@ import java.util.List;
 @SuppressWarnings("JavaDoc")
 public class View$Test {
 	@Test
-	public void remoteList() {
+	public void asList() {
 		Context context = ApplicationProvider.getApplicationContext();
 		LinearLayout layout = new LinearLayout(context);
 
