@@ -1,0 +1,21 @@
+---
+layout: default
+navigations:
+    Support: https://android.cufy.org/support
+---
+
+{% if page.beta %}
+<font color="red">SORRY: THIS SITE STILL UNDER DEVELOPMENT!</font><br><br>
+{% endif %}
+
+{{ page.description }}
+<br><br>
+{{ content }}
+
+{% assign fragments = site.fragments | where: "parent", page.name %}
+{% assign sorted = fragments | sort: 'index' %}
+{% for fragment in sorted %}
+<br>
+{{ fragment }}
+<br>
+{% endfor %}

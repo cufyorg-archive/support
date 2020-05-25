@@ -1,0 +1,32 @@
+# Info
+name: android.cufy.org/support
+title: Android Support
+email: info@cufy.org
+description: >-
+  TODO
+
+# GitHub
+github:
+  is_project_page: true
+  repository_url: https://github.com/cufyx/support
+  owner_url: https://github.com/cufyx
+  owner_name: Cufy
+
+# Collections
+collections:
+  fragments:
+  pages:
+    output: true
+
+# Build
+theme: jekyll-theme-slate
+plugins:
+  - jekyll-feed
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+    values:
+      favicon: '/assets/logo/framework.ico'
+      title: 'Android Support'
