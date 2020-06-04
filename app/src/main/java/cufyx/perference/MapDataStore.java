@@ -32,6 +32,10 @@ import java.util.Set;
  */
 public class MapDataStore extends PreferenceDataStore {
 	/**
+	 * To get or put data from or to it.
+	 */
+	final protected Map map;
+	/**
 	 * A collection of listeners to be called when any change occurred in the map of this by this map-data-store.
 	 * The listener well be called after the value get stored!.
 	 */
@@ -41,10 +45,6 @@ public class MapDataStore extends PreferenceDataStore {
 	 * The listener well be called before the data is gotten from the map.
 	 */
 	final protected Collection<OnDataRequestListener> onDataRequestListeners = new HashSet<>();
-	/**
-	 * To get or put data from or to it.
-	 */
-	final protected Map map;
 
 	/**
 	 * Create a new data-set that uses the given map as its storage.
@@ -83,17 +83,6 @@ public class MapDataStore extends PreferenceDataStore {
 	@Override
 	public void putBoolean(String key, boolean value) {
 		this.put(key, value);
-	}
-
-	/**
-	 * Put the given object to the map of this.
-	 *
-	 * @param key   to be put
-	 * @param value to be put
-	 */
-	public void put(Object key, Object value) {
-		Object old = this.map.put(key, value);
-		this.notifyOnDataChangeListeners(key, old, value);
 	}
 
 	@Override
@@ -176,6 +165,17 @@ public class MapDataStore extends PreferenceDataStore {
 	}
 
 	/**
+	 * Put the given object to the map of this.
+	 *
+	 * @param key   to be put
+	 * @param value to be put
+	 */
+	public void put(Object key, Object value) {
+		Object old = this.map.put(key, value);
+		this.notifyOnDataChangeListeners(key, old, value);
+	}
+
+	/**
 	 * Register the given listener to be called when any change occurred in the data of this data-store.
 	 *
 	 * @param listener to be registered
@@ -193,23 +193,6 @@ public class MapDataStore extends PreferenceDataStore {
 	}
 
 	/**
-	 * Unregister the given listener.
-	 *
-	 * @param listener to be unregistered
-	 * @throws NullPointerException     if the given 'listener' is null
-	 * @throws IllegalArgumentException if the given 'listener' is not registered
-	 */
-	public void unregisterOnDataChangeListener(OnDataChangeListener listener) {
-		Objects.requireNonNull(listener, "listener");
-		if (!this.onDataChangeListeners.contains(listener))
-			throw new IllegalArgumentException("listener not registered");
-
-		synchronized (this.onDataChangeListeners) {
-			this.onDataChangeListeners.remove(listener);
-		}
-	}
-
-	/**
 	 * Register teh given listener to be called when any data request occurred in this map-data-store.
 	 *
 	 * @param listener to be registered
@@ -223,6 +206,23 @@ public class MapDataStore extends PreferenceDataStore {
 
 		synchronized (this.onDataRequestListeners) {
 			this.onDataRequestListeners.add(listener);
+		}
+	}
+
+	/**
+	 * Unregister the given listener.
+	 *
+	 * @param listener to be unregistered
+	 * @throws NullPointerException     if the given 'listener' is null
+	 * @throws IllegalArgumentException if the given 'listener' is not registered
+	 */
+	public void unregisterOnDataChangeListener(OnDataChangeListener listener) {
+		Objects.requireNonNull(listener, "listener");
+		if (!this.onDataChangeListeners.contains(listener))
+			throw new IllegalArgumentException("listener not registered");
+
+		synchronized (this.onDataChangeListeners) {
+			this.onDataChangeListeners.remove(listener);
 		}
 	}
 

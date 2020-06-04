@@ -13,11 +13,11 @@
  *	See the License for the specific language governing permissions and
  *	limitations under the License.
  */
- /**
-  * Support for the android package `androidx.preference`.
-  *
-  * @author lsafer
-  * @version 0.1.5
-  * @since 25-May-20
-  */
- package cufyx.perference;
+/**
+ * Support for the android package `androidx.preference`.
+ *
+ * @author lsafer
+ * @version 0.1.5
+ * @since 25-May-20
+ */
+package cufyx.perference;
