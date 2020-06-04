@@ -2,7 +2,7 @@
 layout: home
 links:
     GitHub: https://github.com/cufyx/support
-    Jitpack: https://jitpack.io/#com.github.cufyx/support
+    Jitpack: https://jitpack.io/#org.cufyx/support
     Javadoc: javadoc
     YouTube: https://www.youtube.com/playlist?list=PL4GvMdlkZJ6YSYy6gERWHuqmK71LtevTd
 ---
