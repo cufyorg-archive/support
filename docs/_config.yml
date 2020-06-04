@@ -3,7 +3,9 @@ name: support.cufyx.org
 title: Cufy Android Support
 email: info@cufy.org
 description: >-
-  TODO
+  A library to support android applications building
+  process. It contains common codes, general purpose
+  utilities, and helper classes.
 
 # GitHub
 github:
