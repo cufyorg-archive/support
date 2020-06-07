@@ -159,7 +159,7 @@ public class MapDataStore extends PreferenceDataStore {
 	 * @param key the key to get the value of
 	 * @return the value associated to the given key
 	 */
-	public Object get(Object key) {
+	public Object get(String key) {
 		this.notifyOnDataRequestListeners(key);
 		return this.map.get(key);
 	}
@@ -170,7 +170,7 @@ public class MapDataStore extends PreferenceDataStore {
 	 * @param key   to be put
 	 * @param value to be put
 	 */
-	public void put(Object key, Object value) {
+	public void put(String key, Object value) {
 		Object old = this.map.put(key, value);
 		this.notifyOnDataChangeListeners(key, old, value);
 	}
@@ -250,7 +250,7 @@ public class MapDataStore extends PreferenceDataStore {
 	 * @param oldValue the old value
 	 * @param newValue the new value
 	 */
-	protected void notifyOnDataChangeListeners(Object key, Object oldValue, Object newValue) {
+	protected void notifyOnDataChangeListeners(String key, Object oldValue, Object newValue) {
 		synchronized (this.onDataChangeListeners) {
 			this.onDataChangeListeners.forEach(l -> l.onDataChange(this, key, oldValue, newValue));
 		}
@@ -261,7 +261,7 @@ public class MapDataStore extends PreferenceDataStore {
 	 *
 	 * @param key the requested key
 	 */
-	protected void notifyOnDataRequestListeners(Object key) {
+	protected void notifyOnDataRequestListeners(String key) {
 		synchronized (this.onDataRequestListeners) {
 			this.onDataRequestListeners.forEach(l -> l.onDataRequest(this, key));
 		}
@@ -280,7 +280,7 @@ public class MapDataStore extends PreferenceDataStore {
 		 * @param newValue the new value
 		 * @throws NullPointerException if the given 'store' is null
 		 */
-		void onDataChange(MapDataStore store, Object key, Object oldValue, Object newValue);
+		void onDataChange(MapDataStore store, String key, Object oldValue, Object newValue);
 	}
 
 	/**
@@ -294,6 +294,6 @@ public class MapDataStore extends PreferenceDataStore {
 		 * @param key   the key that have been requested
 		 * @throws NullPointerException if the given 'store' is null
 		 */
-		void onDataRequest(MapDataStore store, Object key);
+		void onDataRequest(MapDataStore store, String key);
 	}
 }
