@@ -17,11 +17,7 @@ package cufyx.perference;
 
 import androidx.preference.PreferenceDataStore;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 /**
  * A data-store that uses a map as its storage.
@@ -36,22 +32,24 @@ public class MapDataStore extends PreferenceDataStore {
 	 */
 	final protected Map map;
 	/**
-	 * A collection of listeners to be called when any change occurred in the map of this by this map-data-store.
-	 * The listener well be called after the value get stored!.
+	 * A collection of listeners to be called when any change occurred in the map of this by this map-data-store. The listener well be called after
+	 * the value get stored!.
 	 */
 	final protected Collection<OnDataChangeListener> onDataChangeListeners = new HashSet<>();
 	/**
-	 * A collection of listeners to be called when any data request occurred in this map-data-store.
-	 * The listener well be called before the data is gotten from the map.
+	 * A collection of listeners to be called when any data request occurred in this map-data-store. The listener well be called before the data is
+	 * gotten from the map.
 	 */
 	final protected Collection<OnDataRequestListener> onDataRequestListeners = new HashSet<>();
 
 	/**
 	 * Create a new data-set that uses the given map as its storage.
 	 *
-	 * @param map the storage map
+	 * @param map the storage map.
+	 * @throws NullPointerException if the given 'map' is null.
 	 */
 	public MapDataStore(Map map) {
+		Objects.requireNonNull(map, "map");
 		this.map = map;
 	}
 
@@ -156,8 +154,8 @@ public class MapDataStore extends PreferenceDataStore {
 	/**
 	 * Get the value associated to the given key in the map of this map-data-store.
 	 *
-	 * @param key the key to get the value of
-	 * @return the value associated to the given key
+	 * @param key the key to get the value of.
+	 * @return the value associated to the given key.
 	 */
 	public Object get(String key) {
 		this.notifyOnDataRequestListeners(key);
@@ -167,8 +165,8 @@ public class MapDataStore extends PreferenceDataStore {
 	/**
 	 * Put the given object to the map of this.
 	 *
-	 * @param key   to be put
-	 * @param value to be put
+	 * @param key   to be put.
+	 * @param value to be put.
 	 */
 	public void put(String key, Object value) {
 		Object old = this.map.put(key, value);
@@ -178,9 +176,9 @@ public class MapDataStore extends PreferenceDataStore {
 	/**
 	 * Register the given listener to be called when any change occurred in the data of this data-store.
 	 *
-	 * @param listener to be registered
-	 * @throws NullPointerException     if the given 'listener' is null
-	 * @throws IllegalArgumentException if the given 'listener' is already registered
+	 * @param listener to be registered.
+	 * @throws NullPointerException     if the given 'listener' is null.
+	 * @throws IllegalArgumentException if the given 'listener' is already registered.
 	 */
 	public void registerOnDataChangeListener(OnDataChangeListener listener) {
 		Objects.requireNonNull(listener, "listener");
@@ -195,9 +193,9 @@ public class MapDataStore extends PreferenceDataStore {
 	/**
 	 * Register teh given listener to be called when any data request occurred in this map-data-store.
 	 *
-	 * @param listener to be registered
-	 * @throws NullPointerException     if the given 'listener' is null
-	 * @throws IllegalArgumentException if the given 'listener' already registered
+	 * @param listener to be registered.
+	 * @throws NullPointerException     if the given 'listener' is null.
+	 * @throws IllegalArgumentException if the given 'listener' already registered.
 	 */
 	public void registerOnDataRequestListener(OnDataRequestListener listener) {
 		Objects.requireNonNull(listener, "listener");
@@ -212,9 +210,9 @@ public class MapDataStore extends PreferenceDataStore {
 	/**
 	 * Unregister the given listener.
 	 *
-	 * @param listener to be unregistered
-	 * @throws NullPointerException     if the given 'listener' is null
-	 * @throws IllegalArgumentException if the given 'listener' is not registered
+	 * @param listener to be unregistered.
+	 * @throws NullPointerException     if the given 'listener' is null.
+	 * @throws IllegalArgumentException if the given 'listener' is not registered.
 	 */
 	public void unregisterOnDataChangeListener(OnDataChangeListener listener) {
 		Objects.requireNonNull(listener, "listener");
@@ -230,8 +228,8 @@ public class MapDataStore extends PreferenceDataStore {
 	 * Unregister the given listener.
 	 *
 	 * @param listener to be unregistered
-	 * @throws NullPointerException     if the given 'listener' is null
-	 * @throws IllegalArgumentException if the given 'listener' is not registered
+	 * @throws NullPointerException     if the given 'listener' is null.
+	 * @throws IllegalArgumentException if the given 'listener' is not registered.
 	 */
 	public void unregisterOnDataRequestListener(OnDataRequestListener listener) {
 		Objects.requireNonNull(listener, "listener");
@@ -246,24 +244,26 @@ public class MapDataStore extends PreferenceDataStore {
 	/**
 	 * Notify all the 'data-change' listeners registered at this map-data-store that a change in data has occurred.
 	 *
-	 * @param key      the key changed
-	 * @param oldValue the old value
-	 * @param newValue the new value
+	 * @param key      the key changed.
+	 * @param oldValue the old value.
+	 * @param newValue the new value.
 	 */
 	protected void notifyOnDataChangeListeners(String key, Object oldValue, Object newValue) {
 		synchronized (this.onDataChangeListeners) {
-			this.onDataChangeListeners.forEach(l -> l.onDataChange(this, key, oldValue, newValue));
+			for (OnDataChangeListener listener : this.onDataChangeListeners)
+				listener.onDataChange(this, key, oldValue, newValue);
 		}
 	}
 
 	/**
 	 * Notify all the 'data-request' listeners registered at this map-data-store that a data got requested.
 	 *
-	 * @param key the requested key
+	 * @param key the requested key.
 	 */
 	protected void notifyOnDataRequestListeners(String key) {
 		synchronized (this.onDataRequestListeners) {
-			this.onDataRequestListeners.forEach(l -> l.onDataRequest(this, key));
+			for (OnDataRequestListener listener : this.onDataRequestListeners)
+				listener.onDataRequest(this, key);
 		}
 	}
 
@@ -272,27 +272,27 @@ public class MapDataStore extends PreferenceDataStore {
 	 */
 	public interface OnDataChangeListener {
 		/**
-		 * Get called when a change happen on a store that this listener is registered at.
+		 * Get called when a change happens on a store that this listener is registered at.
 		 *
-		 * @param store    the store that the change occurred at
-		 * @param key      the key that have been changed
-		 * @param oldValue the old value
-		 * @param newValue the new value
-		 * @throws NullPointerException if the given 'store' is null
+		 * @param store    the store that the change occurred at.
+		 * @param key      the key that have been changed.
+		 * @param oldValue the old value.
+		 * @param newValue the new value.
+		 * @throws NullPointerException if the given 'store' is null.
 		 */
 		void onDataChange(MapDataStore store, String key, Object oldValue, Object newValue);
 	}
 
 	/**
-	 * Listens to any data-request in a map-data-store. Should be registered using {@link MapDataStore}
+	 * Listens to any data-request in a map-data-store. Should be registered using {@link MapDataStore}.
 	 */
 	public interface OnDataRequestListener {
 		/**
 		 * Get called when a data is requested on a store that this listener is registered at.
 		 *
-		 * @param store the store that the request is occurred at
-		 * @param key   the key that have been requested
-		 * @throws NullPointerException if the given 'store' is null
+		 * @param store the store that the request is occurred at.
+		 * @param key   the key that have been requested.
+		 * @throws NullPointerException if the given 'store' is null.
 		 */
 		void onDataRequest(MapDataStore store, String key);
 	}

@@ -41,8 +41,8 @@ public class TextViewWriter extends Writer {
 	/**
 	 * Construct a new writer that writes to the given {@link TextView}.
 	 *
-	 * @param view to write to
-	 * @throws NullPointerException if the given view is null
+	 * @param view to write to.
+	 * @throws NullPointerException if the given view is null.
 	 */
 	public TextViewWriter(TextView view) {
 		super(view);
@@ -53,9 +53,9 @@ public class TextViewWriter extends Writer {
 	/**
 	 * Construct a new writer that writes to the given {@link TextView}.
 	 *
-	 * @param view to write to
-	 * @param lock the lock to synchronize to
-	 * @throws NullPointerException if the given view is null
+	 * @param view to write to.
+	 * @param lock the lock to synchronize to.
+	 * @throws NullPointerException if the given view is null.
 	 */
 	public TextViewWriter(TextView view, Object lock) {
 		super(lock);

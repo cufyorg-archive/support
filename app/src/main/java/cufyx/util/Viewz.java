@@ -31,20 +31,20 @@ import java.util.Objects;
  */
 final public class Viewz {
 	/**
-	 * This is a util class. And shall not be instanced as an object.
+	 * This is an util class. And must not be instanced as an object.
 	 *
-	 * @throws AssertionError when called
+	 * @throws AssertionError when called.
 	 */
 	private Viewz() {
 		throw new AssertionError("No instance for you!");
 	}
 
 	/**
-	 * Get a remote list to control (add, remove, etc..) for the given group.
+	 * Get a remote list to audit (add, remove, etc,…) for the given group.
 	 *
-	 * @param group to get a remote for
-	 * @return a remote list for the children of the given group
-	 * @throws NullPointerException if the given group is null
+	 * @param group to get a remote for.
+	 * @return a remote list for the children of the given group.
+	 * @throws NullPointerException if the given group is null.
 	 */
 	public static List<View> asList(ViewGroup group) {
 		Objects.requireNonNull(group, "group");

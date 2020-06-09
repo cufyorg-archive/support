@@ -22,7 +22,7 @@ import java.io.OutputStream;
 import java.util.Objects;
 
 /**
- * A output-stream that writes directly to the text of a {@link TextView}.
+ * An output-stream that writes directly to the text of a {@link TextView}.
  *
  * @author lsafer
  * @version 0.1.3
@@ -41,8 +41,8 @@ public class TextViewOutputStream extends OutputStream {
 	/**
 	 * Construct a new stream that writes to the given {@link TextView}.
 	 *
-	 * @param view to write to
-	 * @throws NullPointerException if the given view is null
+	 * @param view to write to.
+	 * @throws NullPointerException if the given view is null.
 	 */
 	public TextViewOutputStream(TextView view) {
 		Objects.requireNonNull(view, "view");
